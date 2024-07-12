@@ -1,0 +1,11 @@
+{
+    "name": "app/core",
+    "description": "Anonymous feedback app",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\Core\\": "src/"
+        }
+    },
+    "require": {}
+}
