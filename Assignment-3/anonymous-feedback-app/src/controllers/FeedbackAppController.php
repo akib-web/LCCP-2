@@ -62,9 +62,11 @@ class FeedbackAppController
 
     // }
   }
-  public static function feedback()
+  public static function feedback($user_id)
   {
-    // var_dump($_REQUEST);
+    var_dump($user_id);
+    // var_dump($_SERVER['PATH_INFO']);
+
     include APP_ROOT_PATH . '/resources/views/feedback.php';
 
     // var_dump(APP_ROOT_PATH);

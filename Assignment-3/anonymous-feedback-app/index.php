@@ -17,12 +17,12 @@ Route::get('/', [FeedbackAppController::class, 'index']);
 Route::get('/login', [FeedbackAppController::class, 'login']);
 Route::get('/register', [FeedbackAppController::class, 'register']);
 Route::get('/dashboard', [FeedbackAppController::class, 'dashboard']);
-Route::get('/feedback', [FeedbackAppController::class, 'feedback']);
-Route::get('/feedback/sYu24jl', [FeedbackAppController::class, 'feedback']);
+// Route::get('/feedback', [FeedbackAppController::class, 'feedback']);
+Route::get('/feedback/{user_id}', [FeedbackAppController::class, 'feedback']);
 Route::get('/feedback_success', [FeedbackAppController::class, 'feedback_success']);
 
+// var_dump($result);
 
-
-if (!in_array(rtrim($_SERVER['PATH_INFO'], '/'), Route::$routes)) {
-  include APP_ROOT_PATH . '/resources/views/404.php';
-}
+// if (!in_array(rtrim($_SERVER['PATH_INFO'], '/'), Route::$routes)) {
+//   include APP_ROOT_PATH . '/resources/views/404.php';
+// }
