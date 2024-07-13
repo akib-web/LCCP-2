@@ -18,6 +18,7 @@ Route::get('/login', [FeedbackAppController::class, 'login']);
 Route::get('/register', [FeedbackAppController::class, 'register']);
 Route::get('/dashboard', [FeedbackAppController::class, 'dashboard']);
 Route::get('/feedback', [FeedbackAppController::class, 'feedback']);
+Route::get('/feedback/sYu24jl', [FeedbackAppController::class, 'feedback']);
 Route::get('/feedback_success', [FeedbackAppController::class, 'feedback_success']);
 
 

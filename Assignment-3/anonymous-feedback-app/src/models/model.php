@@ -27,15 +27,15 @@ class Model
     // var_dump(APP_ROOT_PATH . "/storage/users.txt");
     $all_data = $this->all($this->table);
     $all_data = is_array($all_data) ? $all_data : [];
-    $current_model = serialize([$this]);
+    $current_model = serialize($this);
 
     array_push($all_data, $current_model);
     // var_dump($all_data);
-    file_put_contents($this->getFilePath('users'), serialize($all_data));
+    file_put_contents($this->getFilePath($this->table), serialize($all_data));
   }
   public function getFilePath(string $filename)
   {
-    return APP_ROOT_PATH . "/storage/{$this->table}.txt";
+    return APP_ROOT_PATH . "/storage/$filename.txt";
   }
   public function all(string $filename)
   {
@@ -47,5 +47,21 @@ class Model
     }
 
     return $data;
+  }
+  public function where(array $conditions)
+  {
+    $all_data = $this->all($this->table);
+    $all_data = is_array($all_data) ? $all_data : [];
+
+    foreach ($all_data as $index => $object) {
+      foreach ($conditions as $key => $value) {
+        // var_dump(unserialize($object)->name);
+        // var_dump($value);
+        if (unserialize($object)->{$key} !== $value) {
+          return (object) [];
+        }
+      }
+      return unserialize($object);
+    }
   }
 }

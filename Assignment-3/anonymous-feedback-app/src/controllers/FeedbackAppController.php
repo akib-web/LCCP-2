@@ -13,12 +13,34 @@ class FeedbackAppController
   }
   public static function login()
   {
+    if (isset($_REQUEST['email']) && isset($_REQUEST['password'])) {
+
+      $user = new User();
+      $login_details = $user->where([
+        'email' => $_REQUEST['email'],
+        'password' => $_REQUEST['password']
+      ]);
+
+      $_SESSION["user"] = $login_details;
+      // $_SESSION["user"] = null;
+      // var_dump(empty($login_details->id));
+
+      if (isset($_SESSION["user"])) {
+        header("Location: /dashboard");
+      }
+      // var_dump(isset($_SESSION["user"]));
+      // return;
+    }
 
     include APP_ROOT_PATH . '/resources/views/login.php';
   }
   public static function register()
   {
     if (isset($_REQUEST['name']) && isset($_REQUEST['email']) && isset($_REQUEST['password'])) {
+      if ($_REQUEST['password'] !== $_REQUEST['confirm_password']) {
+        echo "password mismatched";
+        return;
+      }
       if ($_REQUEST['password'] !== $_REQUEST['confirm_password']) {
         echo "password mismatched";
         return;
@@ -49,7 +71,7 @@ class FeedbackAppController
   }
   public static function dashboard()
   {
-    // var_dump($_REQUEST);
+    var_dump($_SESSION["user"]);
     include APP_ROOT_PATH . '/resources/views/dashboard.php';
   }
   public static function feedback_success()
