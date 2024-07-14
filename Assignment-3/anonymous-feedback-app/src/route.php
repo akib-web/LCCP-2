@@ -20,7 +20,7 @@ class Route
     preg_match('/\{(.*?)\}/', $trimmedRoute, $param);
 
     if ($segmentsUrl[0] == $segmentsRoute[0] && isset($param[1])) {
-      call_user_func($controller_callback, [$segmentsUrl[1]]);
+      call_user_func($controller_callback, $segmentsUrl[1]);
     } else if (rtrim($_SERVER['PATH_INFO'], '/') === rtrim($route, '/')) {
       call_user_func($controller_callback);
     }

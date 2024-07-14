@@ -8,6 +8,8 @@ class Model
 
   public string $table;
 
+  public object $data;
+
   public function __get($name)
   {
     if (isset($this->values[$name])) {
@@ -55,13 +57,21 @@ class Model
 
     foreach ($all_data as $index => $object) {
       foreach ($conditions as $key => $value) {
-        // var_dump(unserialize($object)->name);
+        // $this->data = unserialize($object);
+        // var_dump(unserialize($object)->id);
+        // var_dump(unserialize($object)->{$key} === $value);
         // var_dump($value);
-        if (unserialize($object)->{$key} !== $value) {
-          return (object) [];
+        // return unserialize($object);
+        if (unserialize($object)->{$key} === $value) {
+          // return unserialize($object);
+          $this->data = unserialize($object);
         }
       }
-      return unserialize($object);
+      return $this;
     }
+  }
+  public function get()
+  {
+    return $this;
   }
 }

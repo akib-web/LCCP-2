@@ -67,6 +67,10 @@ class FeedbackAppController
     var_dump($user_id);
     // var_dump($_SERVER['PATH_INFO']);
 
+    $user = new User();
+    $user->where(['id' => $user_id]);
+    var_dump($user->data);
+
     include APP_ROOT_PATH . '/resources/views/feedback.php';
 
     // var_dump(APP_ROOT_PATH);
