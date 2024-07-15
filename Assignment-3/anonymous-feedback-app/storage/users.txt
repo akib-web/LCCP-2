@@ -1,0 +1,1 @@
+["{\"table\":\"users\",\"id\":\"66947b18504d5\",\"name\":\"Md Akib Rahman\",\"email\":\"akib@bitbirds.com\",\"password\":\"Akib123\",\"created_at\":\"15-07-24 01:27:52\"}","{\"table\":\"users\",\"id\":\"66947b2062394\",\"name\":\"Fatima Hendricks\",\"email\":\"romujuro@mailinator.com\",\"password\":\"Pa$$w0rd!\",\"created_at\":\"15-07-24 01:28:00\"}"]
