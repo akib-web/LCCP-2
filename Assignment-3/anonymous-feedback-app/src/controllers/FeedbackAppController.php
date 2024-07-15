@@ -82,8 +82,8 @@ class FeedbackAppController
       // header("Location: /login");
     } else if (isset($_REQUEST['feedback'])) {
       $feedback = new Feedback();
-      $feedback->id = Uniqid();
-      $feedback->user_id = 'fb_' . $user_details->id;
+      $feedback->id = 'fb_' . Uniqid();
+      $feedback->user_id = $user_details->id;
       $feedback->feedback = $_REQUEST['feedback'];
       $feedback->created_at = date('d-m-y H:i:s');
       $feedback->save();
