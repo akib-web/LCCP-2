@@ -26,6 +26,7 @@
       <div
         class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div class="flex items-center justify-between">
+
           <a href="/" class="-m-1.5 p-1.5">
             <span class="sr-only">TruthWhisper</span>
             <span
@@ -55,14 +56,23 @@
         <div class="mx-auto max-w-xl">
           <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div class="mx-auto w-full max-w-xl text-center">
+              <?php
+              if (!empty($error)) {
+                echo "<strong class=\"text-[#fb0000]\">$error</strong>";
+              }
+
+              ?>
+            </div>
+            <div class="mx-auto w-full max-w-xl text-center">
               <h1
                 class="block text-center font-bold text-2xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">
                 TruthWhisper</h1>
-              <h3 class="text-gray-500 my-2">Want to ask something or share a feedback to "John Doe"?</h3>
+              <h3 class="text-gray-500 my-2">Want to ask something or share a feedback to
+                "<?php echo $user_details->name; ?>"?</h3>
             </div>
 
             <div class="mt-10 mx-auto w-full max-w-xl">
-              <form class="space-y-6" action="#" method="POST">
+              <form class="space-y-6" action="/feedback/<?php echo $user_details->id; ?>" method="POST">
                 <div>
                   <label for="feedback" class="block text-sm font-medium leading-6 text-gray-900">Don't hesitate, just
                     do it!</label>

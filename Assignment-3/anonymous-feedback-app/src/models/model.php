@@ -29,11 +29,11 @@ class Model
     // var_dump(APP_ROOT_PATH . "/storage/users.txt");
     $all_data = $this->all($this->table);
     $all_data = is_array($all_data) ? $all_data : [];
-    $current_model = serialize($this);
+    $current_model = json_encode($this);
 
     array_push($all_data, $current_model);
     // var_dump($all_data);
-    file_put_contents($this->getFilePath($this->table), serialize($all_data));
+    file_put_contents($this->getFilePath($this->table), json_encode($all_data));
   }
   public function getFilePath(string $filename)
   {
@@ -42,7 +42,7 @@ class Model
   public function all(string $filename)
   {
     if (file_exists($this->getFilePath($filename))) {
-      $data = unserialize(file_get_contents($this->getFilePath($filename)));
+      $data = json_decode(file_get_contents($this->getFilePath($filename)));
     }
     if (!isset($data)) {
       return [];
@@ -57,18 +57,29 @@ class Model
 
     foreach ($all_data as $index => $object) {
       foreach ($conditions as $key => $value) {
-        // $this->data = unserialize($object);
-        // var_dump(unserialize($object)->id);
-        // var_dump(unserialize($object)->{$key} === $value);
-        // var_dump($value);
-        // return unserialize($object);
-        if (unserialize($object)->{$key} === $value) {
-          // return unserialize($object);
-          $this->data = unserialize($object);
+        // return json_decode($object);
+        if (json_decode($object)->{$key} === $value) {
+          return json_decode($object);
+          // $this->data = unserialize($object);
         }
       }
-      return $this;
     }
+  }
+  public function whereAll(array $conditions)
+  {
+    $all_data = $this->all($this->table);
+    $all_data = is_array($all_data) ? $all_data : [];
+    $reesult = [];
+    foreach ($all_data as $index => $object) {
+      foreach ($conditions as $key => $value) {
+        // return json_decode($object);
+        if (json_decode($object)->{$key} === $value) {
+          $reesult[] = json_decode($object);
+          // $this->data = unserialize($object);
+        }
+      }
+    }
+    return $reesult;
   }
   public function get()
   {
